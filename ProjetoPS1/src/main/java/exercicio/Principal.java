@@ -179,6 +179,7 @@ public class Principal
 		}		
 	}
 }
+//AULA 1 --------------------------------------------------------------------------
 //ESTUDANDO PADRÕES DE PROJETO
 //Maven -> Instala dependencias | pasta .m2
 //Maven.txt -> é importante, na pasta "outros"
@@ -208,3 +209,9 @@ public class Principal
 //nunca das classes de negócio, muito menos de formulários.
 
 //Instanciar um objeto da classe -> getDAO(ProdutoDAO.class)
+
+//AULA 2 --------------------------------------------------------------------
+//Tutorialzinho: window -> preferences -> java -> buildpath -> classpath -> 
+//criar variável ambiente -> new -> CONSOLE -> console.jar
+//https://drive.google.com/drive/folders/1yRNpsNLlJh6TsTDPbUVG-_GE1GOBDvag?usp=sharing
+//criar relação de produto com modelo relacional
