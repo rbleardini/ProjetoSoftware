@@ -215,3 +215,42 @@ public class Principal
 //criar variável ambiente -> new -> CONSOLE -> console.jar
 //https://drive.google.com/drive/folders/1yRNpsNLlJh6TsTDPbUVG-_GE1GOBDvag?usp=sharing
 //criar relação de produto com modelo relacional
+/*
+C:\Users\Aluno.L304-5B\.m2\repository\corejava\console\1.0
+
+talvez tenha q consertar o nome do Aluno
+aí cola aquele console-1.0 dele lá
+
+
+Tipo, eu coloquei já nessa pasta aí
+Mas tem que buildar como maven, s
+
+
+tem q clicar no projeto e ir em Maven > update project só
+aqui funcionou
+
+
+
+Pegar console em https://drive.google.com/drive/folders/1yRNpsNLlJh6TsTDPbUVG-_GE1GOBDvag e colocar na pasta C:\Users\Aluno.L304-3A\.m2\repository\corejava\console\1.0
+No eclipse, clicar com o direito no projeto ir em Maven -> Update Project...
+
+Em JPAProdutoDAO, na primeira "==>", inserir:
+
+			em = FabricaDeEntityManager.criarSessao();
+			
+			tx = em.getTransaction();
+			tx.begin();
+			em.persist(umProduto);
+			umProduto.setNome("abc");
+			tx.commit();
+
+segunda "==>":
+			em.close();
+
+terceira "==>":
+			em.merge(umProduto);
+
+quarto e quinto "==>":
+				tx.rollback();
+				throw ProdutoNaoEncontradoException;
+*/
