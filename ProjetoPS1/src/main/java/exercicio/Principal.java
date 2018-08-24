@@ -32,7 +32,7 @@ public class Principal
 						"Informe o nome do produto: ");
 					lanceMinimo = Console.readDouble(
 						"Informe o valor do lance mínimo: ");
-					dataCadastro = Console.readLine(
+					dataCadastro = Console	.readLine(
 						"Informe a data de cadastramento do produto: ");
 						
 					umProduto = new Produto(nome, lanceMinimo, Util.strToDate(dataCadastro));
@@ -253,4 +253,8 @@ terceira "==>":
 quarto e quinto "==>":
 				tx.rollback();
 				throw ProdutoNaoEncontradoException;
+
+//AULA 3 --------------------------------------------------------------------				
+Persistente -> oobjeto monitorado
+Destacado -> possui id | não monitorado
 */

@@ -16,13 +16,14 @@ public class JPAProdutoDAO implements ProdutoDAO
 		{	// transiente - objeto novo: ainda não persistente
 			// persistente - apos ser persistido 
 			// destacado - objeto persistente não vinculado a um entity manager
-==>		
-
 			
+			em = FabricaDeEntityManager.criarSessao();
 			
-			
-			
-			
+			tx = em.getTransaction();
+			tx.begin();
+			em.persist(umProduto);
+			umProduto.setNome("abc");
+			tx.commit();	
 			
 			return umProduto.getId();
 		} 
@@ -38,7 +39,8 @@ public class JPAProdutoDAO implements ProdutoDAO
 			throw e;
 		}
 		finally
-==>		{		
+		{	
+			em.close();
 		}
 	}
 
@@ -52,12 +54,12 @@ public class JPAProdutoDAO implements ProdutoDAO
 			tx = em.getTransaction();
 			tx.begin();
 			
-==>
+			em.merge(umProduto);
 			
 			if(produto == null)
 			{
-==>	
-==>
+				tx.rollback();
+				throw new ProdutoNaoEncontradoException("Produto não encontrado");
 			}
 ==>	
 			tx.commit();
@@ -89,14 +91,17 @@ public class JPAProdutoDAO implements ProdutoDAO
 			tx = em.getTransaction();
 			tx.begin();
 
-==>			Produto produto = em.find(Produto.class, new Long(numero), LockModeType.PESSIMISTIC_WRITE);
+			Produto produto = em.find(Produto.class, 
+										new Long(numero), 
+										LockModeType.PESSIMISTIC_WRITE);
 			
 			if(produto == null)
-			{	tx.rollback();
+			{	
+				tx.rollback();
 				throw new ProdutoNaoEncontradoException("Produto não encontrado");
 			}
 
-==>			
+			em.remove(produto);
 			tx.commit();
 		} 
 		catch(RuntimeException e)
@@ -123,7 +128,7 @@ public class JPAProdutoDAO implements ProdutoDAO
 		{	
 			em = FabricaDeEntityManager.criarSessao();
 
-==>			Produto umProduto = em.find(Produto.class, numero);
+			Produto umProduto = em.find(Produto.class, numero);
 			
 			// Características no método find():
 			// 1. É genérico: não requer um cast.
@@ -143,9 +148,12 @@ public class JPAProdutoDAO implements ProdutoDAO
 	{	EntityManager em = null;
 		
 		try
-		{	em = FabricaDeEntityManager.criarSessao();
-
-==>
+		{	
+			em = FabricaDeEntityManager.criarSessao();
+		
+			List<Produto> produtos = em
+					.createQuery("Select p from Produto p order by p.id")
+					.getResultList();
 
 			// Retorna um List vazio caso a tabela correspondente esteja vazia.
 			

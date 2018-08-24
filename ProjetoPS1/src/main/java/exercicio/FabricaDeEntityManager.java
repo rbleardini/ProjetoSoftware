@@ -12,6 +12,7 @@ public class FabricaDeEntityManager
 	{	
 		try
 		{	
+			//Essa é a verdadeira fábrica de EntityManager
 			emf = Persistence.createEntityManagerFactory("exercicio");
 		}
 		catch(Throwable e)

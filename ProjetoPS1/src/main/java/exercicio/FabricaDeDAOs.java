@@ -9,7 +9,7 @@ public class FabricaDeDAOs
 
 	static
 	{	try
-		{	prop = ResourceBundle.getBundle("dao");
+		{	prop = ResourceBundle.getBundle("dao"); //vai procurar o dao.properties
 		}
 		catch(MissingResourceException e)
 		{	System.out.println("Aquivo dao.properties não encontrado.");
