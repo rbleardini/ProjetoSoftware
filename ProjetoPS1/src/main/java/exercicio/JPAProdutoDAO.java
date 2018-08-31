@@ -22,7 +22,6 @@ public class JPAProdutoDAO implements ProdutoDAO
 			tx = em.getTransaction();
 			tx.begin();
 			em.persist(umProduto);
-			umProduto.setNome("abc");
 			tx.commit();	
 			
 			return umProduto.getId();

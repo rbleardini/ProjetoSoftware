@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 
 @Entity
-@Table(name="PRODUTO")
+@Table(name="produto")
 // @SequenceGenerator(name="SEQUENCIA", 
 //	                  sequenceName="SEQ_PRODUTO",
 //                    allocationSize=1)
@@ -25,6 +25,7 @@ public class Produto
 	private double lanceMinimo;
 	private Date dataCadastro;
 	private Date dataVenda;
+	
 
 	// ********* Construtores *********
 
@@ -82,6 +83,7 @@ public class Produto
 	public String getDataVendaMasc()
 	{	return Util.dateToStr(dataVenda);
 	}
+	
 
 	// ********* Métodos do Tipo Set *********
 
@@ -98,6 +100,7 @@ public class Produto
 	{	this.lanceMinimo = lanceMinimo;
 	}
 	
+	
 	public void setDataCadastro(Date dataCadastro)
 	{	this.dataCadastro = dataCadastro;	
 	}
@@ -105,5 +108,6 @@ public class Produto
 	public void setDataVenda(Date dataVenda)
 	{	this.dataVenda = dataVenda;
 	}
+	
 }
 
