@@ -7,13 +7,15 @@ import javax.persistence.Persistence;
 
 import excecao.InfraestruturaException;
 
+
+
 public class JPAUtil 
 {	private static EntityManagerFactory emf;
 	private static final ThreadLocal<EntityManager> threadEntityManager = 
 			new ThreadLocal<EntityManager>();
 	private static final ThreadLocal<EntityTransaction> threadTransaction = 
 			new ThreadLocal<EntityTransaction>();
-
+	static int contador = 0;
 	static 
 	{	try
 		{	emf = Persistence.createEntityManagerFactory("exercicio");
@@ -28,11 +30,12 @@ public class JPAUtil
 
 	public static void beginTransaction() 
 	{	//System.out.println("Vai criar transacao");
-
 		EntityTransaction tx = threadTransaction.get();
 		try 
-		{	if (tx == null) 
-			{	tx = getEntityManager().getTransaction();
+		{	if (tx == null)
+			{	
+				contador += 1;
+				tx = getEntityManager().getTransaction();
 				tx.begin();
 				threadTransaction.set(tx);
 				//System.out.println("Criou transacao");
@@ -68,8 +71,14 @@ public class JPAUtil
 	{	EntityTransaction tx = threadTransaction.get();
 		try 
 		{	if ( tx != null && tx.isActive())
-			{	tx.commit();
-				//System.out.println("Comitou transacao");
+			{	
+				if(contador == 1){
+					contador -= 1;
+					tx.commit();
+					//System.out.println("Comitou transacao");
+				}else{
+					contador -= 1;
+				}
 			}
 			threadTransaction.set(null);
 		} 
