@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+             http://www.springframework.org/schema/context 
+             http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+             http://www.springframework.org/schema/tx
+             http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">      
+
+	<bean id="clienteService"   class="servico.ClienteService" />
+
+    <context:component-scan base-package="dao.impl" />
+
+<!-- Também  é  preciso  registrar  uma instância de PersistenceAnnotationBeanPostProcessor  
+     para  que  ela  injete  um  entity  manager  diferente  nas propriedades  anotadas com 
+     @PersistenceContext, das classes do  tipo  DAO.  A  cada  nova  transação,  um  entity 
+     manager diferente é injetado.
+     
+     Para  registrar  esta  instância  encarregada  de  injetar  os  entity  managers basta 
+     acrescentar o elemento xml abaixo neste arquivo de configuração.
+-->
+
+	<context:annotation-config/>
+
+<!--  Aqui  é  preciso  habilitar o  gerenciamento de  transação  de  forma  declarativa  e 
+      informar   o   nome   da   classe    responsável   pelo   controle   de    transação: 
+      JpaTransactionManager.
+ -->
+    <tx:annotation-driven />
+    
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+<!-- Spring provê  um fábrica  denominada LocalEntityManagerFactoryBean,  para que se possa 
+     criar um objeto entity manager factory no container IoC. É preciso especificar o  nome
+     da unidade de persistência definida no arquivo de configuração da JPA.  -->
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="exercicio" />
+    </bean>
+
+</beans>
