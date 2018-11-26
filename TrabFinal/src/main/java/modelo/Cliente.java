@@ -13,17 +13,24 @@ public class Cliente
 {
 	private Long numero;
 	private String nome;
+	private String data;
+	/*
 	private String sexo;
 	private int idade;
 	private boolean newsLetter;
+	*/
 	
-	public Cliente(String nome, String sexo, int idade, boolean newsLetter) 
+	//public Cliente(String nome, String data, String sexo, int idade, boolean newsLetter)
+	public Cliente(String nome, String data) 
 	{
 		super();
 		this.nome = nome;
+		this.data = data;
+		/*
 		this.sexo = sexo;
 		this.idade = idade;
 		this.newsLetter = newsLetter;
+		*/
 	}
 
 	public Cliente() 
@@ -31,7 +38,8 @@ public class Cliente
 	}
 
 	public String toString()
-	{	return "Numero = " + numero + " nome = " + nome + " sexo = " + sexo + " idade = " + idade + " newsLetter = " + newsLetter;
+	{	return "Numero = " + numero + " nome = " + nome + " data = " + data;
+		//return "Numero = " + numero + " nome = " + nome + " sexo = " + sexo + " idade = " + idade + " newsLetter = " + newsLetter;
 	}
 	
 	@Id
@@ -53,7 +61,15 @@ public class Cliente
 	public void setNome(String nome) 
 	{	this.nome = nome;
 	}
+	@Column(name="dataNasc")
+	public String getData() 
+	{	return data;
+	}
 	
+	public void setData(String data) 
+	{	this.nome = data;
+	}
+	/*
 	public String getSexo() 
 	{	return sexo;
 	}
@@ -78,4 +94,5 @@ public class Cliente
 	public void setNewsLetter(boolean newsLetter) 
 	{	this.newsLetter = newsLetter;
 	}
+	*/
 }

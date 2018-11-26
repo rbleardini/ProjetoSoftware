@@ -56,7 +56,7 @@ public class DialogCliente extends JDialog implements ActionListener
 	private JLabel nomeMensagem;
 	private JLabel dataMensagem;
 	private JLabel sexoMensagem;
-	private JLabel idadeMensagem;
+	//private JLabel idadeMensagem;
 
 	private JPanel panel;
 	
@@ -68,6 +68,7 @@ public class DialogCliente extends JDialog implements ActionListener
 		this.umCliente = umCliente;
 		
 		nomeTextField.setText(umCliente.getNome());
+		dataTextField.setText(umCliente.getData());
 		/*
 		if(umCliente.getSexo().equals("M"))
 			sexoMascRadioButton.setSelected(true);
@@ -81,7 +82,7 @@ public class DialogCliente extends JDialog implements ActionListener
 		nomeMensagem.setText("");
 		dataMensagem.setText("");
 		//sexoMensagem.setText("");
-		idadeMensagem.setText("");
+		//idadeMensagem.setText("");
 	}
 	
 	public DialogCliente(JFrame frame)
@@ -201,12 +202,13 @@ public class DialogCliente extends JDialog implements ActionListener
 			{	
 				umCliente = new Cliente();
 				umCliente.setNome(nomeTextField.getText().toUpperCase());
+				umCliente.setData(dataTextField.getText().toUpperCase());
 				/*
 				umCliente.setSexo(sexoMascRadioButton.isSelected() ? "M" : "F");
 				umCliente.setIdade(idadeComboBox.getSelectedIndex());
 				umCliente.setNewsLetter(newsLetterCheckBox.isSelected());
-				*/
 				umCliente.setIdade(Integer.parseInt(dataTextField.getText().toUpperCase()));
+				*/
 				clienteService.inclui(umCliente);
 				
 				salvo();
@@ -226,8 +228,9 @@ public class DialogCliente extends JDialog implements ActionListener
 			if(!deuErro)
 			{	
 				umCliente.setNome(nomeTextField.getText().toUpperCase());
-				umCliente.setIdade(Integer.parseInt(dataTextField.getText().toUpperCase()));
+				umCliente.setData(dataTextField.getText().toUpperCase());
 				/*
+				umCliente.setIdade(Integer.parseInt(dataTextField.getText().toUpperCase()));
 				umCliente.setSexo(sexoMascRadioButton.isSelected() ? "M" : "F");
 				umCliente.setIdade(idadeComboBox.getSelectedIndex());
 				umCliente.setNewsLetter(newsLetterCheckBox.isSelected());
@@ -277,7 +280,7 @@ public class DialogCliente extends JDialog implements ActionListener
 				umCliente = clienteService.recuperaUmCliente(umCliente.getNumero());
 
 				nomeTextField.setText(umCliente.getNome());
-				dataTextField.setText(Integer.toString(umCliente.getIdade()));
+				dataTextField.setText(umCliente.getData());
 				/*
 				if(umCliente.getSexo().equals("M"))
 					sexoMascRadioButton.setSelected(true);

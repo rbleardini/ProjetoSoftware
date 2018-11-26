@@ -20,14 +20,15 @@ public class ClienteModel extends AbstractTableModel
 	
 	public static final int COLUNA_NUMERO = 0;
 	public static final int COLUNA_NOME = 1;
-	public static final int COLUNA_SEXO = 2;
-	public static final int COLUNA_IDADE = 3;
-	public static final int COLUNA_NEWS_LETTER = 4;
-	public static final int COLUNA_ACAO = 5;
+	public static final int COLUNA_DATANASC = 2;
+	//public static final int COLUNA_SEXO = 2;
+	//public static final int COLUNA_IDADE = 3;
+	//public static final int COLUNA_NEWS_LETTER = 4;
+	public static final int COLUNA_ACAO = 3;
 	
-    private final static int NUMERO_DE_LINHAS_POR_PAGINA = 6;
+    private final static int NUMERO_DE_LINHAS_POR_PAGINA = 4;
 
-	private String[] idades = {"", "até 30 anos", "de 31 a 40 anos", "de 41 a 50 anos", "acima de 50 anos" };
+	//private String[] idades = {"", "até 30 anos", "de 31 a 40 anos", "de 41 a 50 anos", "acima de 50 anos" };
 
 	private static ClienteService clienteService;
 	
@@ -59,9 +60,12 @@ public class ClienteModel extends AbstractTableModel
 	{
 		if(c == COLUNA_NUMERO) return "Número";
 		if(c == COLUNA_NOME) return "Nome";
+		if(c == COLUNA_DATANASC) return "Data";
+		/*
 		if(c == COLUNA_SEXO) return "Sexo";
 		if(c == COLUNA_IDADE) return "Idade";
 		if(c == COLUNA_NEWS_LETTER) return "News Letter";
+		*/
 		if(c == COLUNA_ACAO) return "Ação";
 		return null;
 	}
@@ -144,12 +148,16 @@ public class ClienteModel extends AbstractTableModel
 			return cliente.getNumero();
 		else if (columnIndex == COLUNA_NOME)
 			return cliente.getNome();
+		else if (columnIndex == COLUNA_DATANASC)
+			return cliente.getData();
+		/*
 		else if (columnIndex == COLUNA_SEXO)
 			return cliente.getSexo();
 		else if (columnIndex == COLUNA_IDADE)
 			return idades[cliente.getIdade()];
 		else if (columnIndex == COLUNA_NEWS_LETTER)
 			return cliente.isNewsLetter();
+		*/
 		else
 			return null;
 	}
@@ -161,11 +169,13 @@ public class ClienteModel extends AbstractTableModel
 		Class<?> classe = null;
 		if(c == COLUNA_NUMERO) classe = Integer.class;
 		if(c == COLUNA_NOME) classe = String.class;
+		if(c == COLUNA_DATANASC) classe = String.class;
+		/*
 		if(c == COLUNA_SEXO) classe = String.class;
 		if(c == COLUNA_IDADE) classe = Integer.class;
 		if(c == COLUNA_NEWS_LETTER) classe = Boolean.class;
+		*/
 		if(c == COLUNA_ACAO) classe = ButtonColumn.class;
-
 		return classe;
 	}
 	
@@ -181,8 +191,9 @@ public class ClienteModel extends AbstractTableModel
 		Cliente umCliente = cache.get(r);
 
 		if(c == COLUNA_NOME) umCliente.setNome((String)obj);
-		if(c == COLUNA_SEXO) umCliente.setSexo((String)obj);
-
+		if(c == COLUNA_DATANASC) umCliente.setData((String)obj);
+		//if(c == COLUNA_SEXO) umCliente.setSexo((String)obj);
+		/*
 		if(c == COLUNA_IDADE)
 		{
 			if(((String)obj).equals("até 30 anos"))
@@ -194,8 +205,8 @@ public class ClienteModel extends AbstractTableModel
 			else if(((String)obj).equals("acima de 50 anos"))
 				umCliente.setIdade(4);
 		}
-		
-		if(c == COLUNA_NEWS_LETTER) umCliente.setNewsLetter((Boolean)obj);
+		*/
+		//if(c == COLUNA_NEWS_LETTER) umCliente.setNewsLetter((Boolean)obj);
 
 		try 
 		{	clienteService.altera(umCliente);

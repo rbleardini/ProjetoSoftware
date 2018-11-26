@@ -28,13 +28,15 @@ public class DialogTabelaCliente extends JDialog implements ActionListener
 	private ClienteModel clienteModel;
 	private JScrollPane scrollPane;
 	
+	private TableColumnModel columnModel;
+	/*
 	private JComboBox<String> sexoComboBox;
 	private JComboBox<String> idadeComboBox;
 	
-	private TableColumnModel columnModel;
+	
 	private TableColumn sexoColumn;
 	private TableColumn idadeColumn;
-	
+	*/
 	DialogCliente dialogCliente;
 	
 	public DialogTabelaCliente(DialogCliente dialogCliente)
@@ -84,7 +86,7 @@ public class DialogTabelaCliente extends JDialog implements ActionListener
 		scrollPane.setViewportView(table);
 
 		/**********************************************************************/
-		
+		/*
 		sexoComboBox = new JComboBox<String>();
 		sexoComboBox.addItem("M");
 		sexoComboBox.addItem("F");
@@ -94,7 +96,7 @@ public class DialogTabelaCliente extends JDialog implements ActionListener
 		idadeComboBox.addItem("de 31 a 40 anos");
 		idadeComboBox.addItem("de 41 a 50 anos");
 		idadeComboBox.addItem("acima de 50 anos");
-
+		*/
 		columnModel = table.getColumnModel();
 	}
 
@@ -113,14 +115,16 @@ public class DialogTabelaCliente extends JDialog implements ActionListener
 
         // Designa um novo editor para a coluna da tabela
         // Este novo editor é um ComboBox
+		/*
 		sexoColumn = columnModel.getColumn(ClienteModel.COLUNA_SEXO);
 		sexoColumn.setCellEditor(new DefaultCellEditor(sexoComboBox));
-		
+		*/
         // Designa um novo editor para a coluna da tabela
         // Este novo editor é um ComboBox
+		/*
 		idadeColumn = columnModel.getColumn(ClienteModel.COLUNA_IDADE);
 		idadeColumn.setCellEditor(new DefaultCellEditor(idadeComboBox));
-
+		*/
 		// Designa um valor preferido para a coluna. Se ele for menor
 		// ou maior do que o máximo possível, ele será ajustado.
 		// columnModel.getColumn(0).setPreferredWidth(50);

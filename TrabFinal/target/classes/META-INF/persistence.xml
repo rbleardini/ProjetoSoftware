@@ -22,7 +22,7 @@
 
 			<property name="hibernate.dialect"               value="org.hibernate.dialect.MySQLDialect"/>
 
-        	<property name="javax.persistence.jdbc.url"      value="jdbc:mysql://bdserver.ic.uff.br:3306/banco1"/>   
+        	<property name="javax.persistence.jdbc.url"      value="jdbc:mysql://bdserver.ic.uff.br:3306/tf2018"/>   
             <property name="javax.persistence.jdbc.user"     value="aluno"/>
             <property name="javax.persistence.jdbc.password" value="banco@dados17"/>  
             
